@@ -82,7 +82,7 @@ class SassSrcNode(Node):
         if not getattr(settings, 'SASS_PROCESSOR_ENABLED', settings.DEBUG):
             return url
         sourcemap_filename = css_filename + '.map'
-        if self.is_latest(sourcemap_filename):
+        if self.is_latest(sourcemap_filename) and not getattr(settings, 'SASS_PROCESSOR_FORCE_RECOMPILE', False):
             return url
 
         # with offline compilation, raise an error, if css file could not be found.
